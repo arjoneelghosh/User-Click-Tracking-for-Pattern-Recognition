@@ -1,12 +1,83 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import GenreSelector from '@/components/GenreSelector';
+import ContentGrid from '@/components/ContentGrid';
+import { Content } from '@/components/ContentCard';
+import RecommendationChart from '@/components/RecommendationChart';
+import FloatingChatButton from '@/components/FloatingChatButton';
+import ChatModal from '@/components/ChatModal';
+import { getContentsByGenre, getRecommendationInfluence, getGenreInfluence } from '@/lib/mockData';
 
 const Index = () => {
+  const { toast } = useToast();
+  const [selectedGenre, setSelectedGenre] = useState('All');
+  const [contents, setContents] = useState(getContentsByGenre('All'));
+  const [showChart, setShowChart] = useState(false);
+  const [chartData, setChartData] = useState<{ name: string; score: number }[]>([]);
+  const [chartTitle, setChartTitle] = useState('');
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  
+  const handleGenreSelect = (genre: string) => {
+    setSelectedGenre(genre);
+    const filteredContents = getContentsByGenre(genre);
+    setContents(filteredContents);
+    
+    if (genre !== 'All') {
+      // Show genre influence chart
+      const influenceData = getGenreInfluence(genre);
+      setChartData(influenceData);
+      setChartTitle(`Top ${genre} Recommendations`);
+      setShowChart(true);
+      
+      toast({
+        title: `${genre} selected`,
+        description: `Showing top recommendations for ${genre}`,
+      });
+    } else {
+      setShowChart(false);
+    }
+  };
+  
+  const handleContentSelect = (content: Content) => {
+    // Show content influence chart
+    const influenceData = getRecommendationInfluence(content);
+    setChartData(influenceData);
+    setChartTitle(`Because you clicked "${content.title}"`);
+    setShowChart(true);
+    
+    toast({
+      title: `${content.title} selected`,
+      description: `Showing similar content to ${content.title}`,
+    });
+  };
+  
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-prime text-white">
+      <Navbar onChatToggle={toggleChat} />
+      <Hero />
+      <GenreSelector selectedGenre={selectedGenre} onGenreSelect={handleGenreSelect} />
+      <ContentGrid contents={contents} onContentSelect={handleContentSelect} />
+      
+      <RecommendationChart 
+        data={chartData}
+        isVisible={showChart}
+        onClose={() => setShowChart(false)} 
+        title={chartTitle}
+      />
+      
+      <FloatingChatButton 
+        onClick={toggleChat}
+        className={isChatOpen ? 'hidden md:flex' : ''}
+      />
+      
+      <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };
