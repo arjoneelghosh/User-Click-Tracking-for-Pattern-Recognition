@@ -23,5 +23,5 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
+//Locally hosted currently
 export default App;
