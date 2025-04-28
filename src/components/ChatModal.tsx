@@ -1,4 +1,4 @@
-
+//Chatbot default setup which aims to integrate deepseek v3 via openrouter's API integration to the react based chatbot
 import React, { useState } from 'react';
 import { X, Send } from 'lucide-react';
 import { Button } from './ui/button';
