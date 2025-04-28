@@ -26,7 +26,7 @@ const Index = () => {
     setContents(filteredContents);
     
     if (genre !== 'All') {
-      // Show genre influence chart
+      // Show genre influence chart based
       const influenceData = getGenreInfluence(genre);
       setChartData(influenceData);
       setChartTitle(`Top ${genre} Recommendations`);
