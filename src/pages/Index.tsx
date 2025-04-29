@@ -42,7 +42,7 @@ const Index = () => {
   };
   
   const handleContentSelect = (content: Content) => {
-    // Show content influence chart
+    // Show content influence charts
     const influenceData = getRecommendationInfluence(content);
     setChartData(influenceData);
     setChartTitle(`Because you clicked "${content.title}"`);
