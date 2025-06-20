@@ -1,13 +1,6 @@
-
 import React from 'react';
-import { MessageSquare } from "lucide-react";
-import { Button } from './ui/button';
 
-interface NavbarProps {
-  onChatToggle: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ onChatToggle }) => {
+const Navbar: React.FC = () => {
   const categories = [
     "Home",
     "Movies",
@@ -34,17 +27,6 @@ const Navbar: React.FC<NavbarProps> = ({ onChatToggle }) => {
                 {category}
               </button>
             ))}
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              className="hidden md:flex items-center text-gray-300 hover:text-prime-accent"
-              onClick={onChatToggle}
-            >
-              <MessageSquare className="mr-2 h-4 w-4" />
-              Assistant
-            </Button>
           </div>
         </div>
       </div>

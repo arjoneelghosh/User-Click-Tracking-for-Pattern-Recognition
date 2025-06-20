@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from './ui/button';
 
@@ -33,8 +32,7 @@ const Hero: React.FC = () => {
               Browse Now
             </Button>
             <Button 
-              variant="outline" 
-              className="border-white/40 text-white hover:bg-white/10" 
+              className="bg-prime-accent hover:bg-prime-accent/90 text-prime-dark font-medium" 
               size="lg"
             >
               How It Works

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
@@ -7,8 +6,6 @@ import GenreSelector from '@/components/GenreSelector';
 import ContentGrid from '@/components/ContentGrid';
 import { Content } from '@/components/ContentCard';
 import RecommendationChart from '@/components/RecommendationChart';
-import FloatingChatButton from '@/components/FloatingChatButton';
-import ChatModal from '@/components/ChatModal';
 import { getContentsByGenre, getRecommendationInfluence, getGenreInfluence } from '@/lib/mockData';
 
 const Index = () => {
@@ -18,7 +15,6 @@ const Index = () => {
   const [showChart, setShowChart] = useState(false);
   const [chartData, setChartData] = useState<{ name: string; score: number }[]>([]);
   const [chartTitle, setChartTitle] = useState('');
-  const [isChatOpen, setIsChatOpen] = useState(false);
   
   const handleGenreSelect = (genre: string) => {
     setSelectedGenre(genre);
@@ -53,14 +49,10 @@ const Index = () => {
       description: `Showing similar content to ${content.title}`,
     });
   };
-  
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
 
   return (
     <div className="min-h-screen bg-prime text-white">
-      <Navbar onChatToggle={toggleChat} />
+      <Navbar />
       <Hero />
       <GenreSelector selectedGenre={selectedGenre} onGenreSelect={handleGenreSelect} />
       <ContentGrid contents={contents} onContentSelect={handleContentSelect} />
@@ -71,13 +63,6 @@ const Index = () => {
         onClose={() => setShowChart(false)} 
         title={chartTitle}
       />
-      
-      <FloatingChatButton 
-        onClick={toggleChat}
-        className={isChatOpen ? 'hidden md:flex' : ''}
-      />
-      
-      <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };
