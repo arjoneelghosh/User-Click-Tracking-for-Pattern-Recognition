@@ -2,6 +2,10 @@ import React from 'react';
 import { Button } from './ui/button';
 
 const Hero: React.FC = () => {
+  const handleHowItWorksClick = () => {
+    window.open('https://quiet-mousse-193620.netlify.app/', '_blank');
+  };
+
   return (
     <div className="relative overflow-hidden w-full h-[500px]">
       <div 
@@ -34,6 +38,7 @@ const Hero: React.FC = () => {
             <Button 
               className="bg-prime-accent hover:bg-prime-accent/90 text-prime-dark font-medium" 
               size="lg"
+              onClick={handleHowItWorksClick}
             >
               How It Works
             </Button>
