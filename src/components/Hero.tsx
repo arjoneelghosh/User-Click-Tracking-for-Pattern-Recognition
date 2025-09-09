@@ -10,13 +10,6 @@ const Hero: React.FC = () => {
         <p className="text-lg text-gray-400 mb-8">
           Click on any movie to get personalized recommendations
         </p>
-      </div>
-    </div>
-  );
-};
-
-export default Hero;
-          </p>
           <div className="flex flex-wrap gap-4">
             <Button 
               className="bg-prime-accent hover:bg-prime-accent/90 text-prime-dark font-medium" 
