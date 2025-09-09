@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 interface GenreSelectorProps {
   selectedGenre: string;
@@ -20,22 +21,27 @@ const GenreSelector: React.FC<GenreSelectorProps> = ({ selectedGenre, onGenreSel
   ];
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h2 className="text-xl font-semibold mb-4">Browse by Genre</h2>
-      <div className="flex gap-2 pb-2 overflow-x-auto scrollbar-none">
-        {genres.map((genre) => (
-          <button
-            key={genre}
-            onClick={() => onGenreSelect(genre)}
-            className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
-              selectedGenre === genre
-                ? "bg-prime-accent text-prime-dark font-medium"
-                : "bg-prime-light/50 hover:bg-prime-light text-gray-300"
-            }`}
-          >
-            {genre}
-          </button>
-        ))}
+    <div className="container mx-auto px-4 py-6 border-b border-gray-800">
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-2xl font-bold text-white mb-2">All Movies</h2>
+          <p className="text-gray-400">150 movies</p>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-gray-400">Genre:</span>
+          <Select value={selectedGenre} onValueChange={onGenreSelect}>
+            <SelectTrigger className="w-32 bg-prime-light border-gray-700 text-white">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-prime-light border-gray-700">
+              {genres.map((genre) => (
+                <SelectItem key={genre} value={genre} className="text-white hover:bg-gray-700">
+                  {genre}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   );

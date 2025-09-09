@@ -30,7 +30,7 @@ const Index = () => {
       
       toast({
         title: `${genre} selected`,
-        description: `Showing top recommendations for ${genre}`,
+        description: `Showing movies for ${genre}`,
       });
     } else {
       setShowChart(false);
@@ -46,12 +46,12 @@ const Index = () => {
     
     toast({
       title: `${content.title} selected`,
-      description: `Showing similar content to ${content.title}`,
+      description: `Showing recommendations based on ${content.title}`,
     });
   };
 
   return (
-    <div className="min-h-screen bg-prime text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
       <Hero />
       <GenreSelector selectedGenre={selectedGenre} onGenreSelect={handleGenreSelect} />
