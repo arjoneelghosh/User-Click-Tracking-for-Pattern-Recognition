@@ -1,27 +1,42 @@
 
+# Movie Recommendation Engine
 
-## Problem
-Recommender projects often stop at backend similarity output, which makes it hard to understand how recommendations are surfaced, explained, and explored by a user.
+A frontend recommendation prototype that turns movie discovery into a user-facing product flow through browseable cards, genre-based filtering, click-driven recommendation views, and chart-based recommendation feedback.This project is designed as a UI-first exploration of how recommendation behavior can be surfaced to users, rather than as a backend-heavy recommender system. It focuses on interaction, presentation, and explainability at the product layer.
+
+## Live Demo
+
+- https://quiet-mousse-193620.netlify.app/
+
+## Overview
+
+Many recommendation projects stop at backend similarity output or model scores, which makes it hard to understand how recommendations would actually be explored by a user.
+
+This prototype addresses that by building:
+- a movie discovery interface with cards and genre filtering
+- click-triggered recommendation views
+- a chart-based panel that explains why recommendations are being shown
+- a product-style flow that makes recommendation behavior easier to inspect
+
+The current implementation should be framed conservatively as a **mock recommendation prototype** with frontend-focused behavior and simulated recommendation scoring.
 
 ## Approach
-Build a browse layer with movie cards and watched history instead of only exposing the recommendation result.
 
-Use recommendation panels and ranked matches to make the output easier to interpret.
+This project builds a lightweight recommendation experience by combining:
 
-Keep explanation cues such as same actor or same genre visible so the system feels more understandable to a user.
+- a browse layer with movie cards
+- genre-based filtering
+- click-based recommendation triggers
+- a floating chart panel for visual recommendation feedback
+- simple contextual cues such as title, genre, rating, and year
 
-## Outcomes
-Shows recommendation logic translated into an actual product flow.
+The goal is to make recommendation behavior feel understandable at the interface level, even in prototype form.
 
-Combines watched history, recommendation ranking, and explanation oriented UI in one prototype.
+## Features
 
-Should be framed conservatively as a hybrid recommendation prototype unless stronger backend evidence confirms a stricter collaborative filtering implementation.
-
-## Tech Stack
-
-React
-TypeScript
-Collaborative Filtering
-Content-Based Filtering
-Recommendation Logic
-Interactive Filtering
+- Responsive movie/content card grid
+- Genre-based filtering
+- Click-triggered recommendation feedback
+- Floating recommendation panel using charts
+- Dark themed streaming-style interface
+- Toast-based interaction feedback
+- Single-page React application with clean component separation
